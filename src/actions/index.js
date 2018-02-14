@@ -11,8 +11,10 @@ export const FETCH_WEATHER = 'FETCH_WEATHER';
   const url = `${ROOT_URL}&q=${city},us`; // We'll only look for US cities
   const request = axios.get(url); // returns a promise called 'request'
 
-   return {
-     type: FETCH_WEATHER,
-     payload: request,
-   };
+  console.log("Request: ", request);
+
+  return {
+    type: FETCH_WEATHER,
+    payload: request,
+  };
  }
