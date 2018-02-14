@@ -11,16 +11,16 @@ class SearchBar extends Component {
     this.state = { term: '' };
 
     // this is the proper way to make sure the correct 'this' binding occurs
-    this.onInputChange = this.onInputChange.bind(this);
-    this.onFormSubmit = this.onFormSubmit.bind(this);
+    // this.onInputChange = this.onInputChange.bind(this);
+    // this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
-  onInputChange(event) {
+  onInputChange = (event) => {
     this.setState({ term: event.target.value });
   };
 
   // always need to prevent default when using form tags
-  onFormSubmit(event) {
+  onFormSubmit = (event) => {
     event.preventDefault();
 
     // go to fetch weather data
