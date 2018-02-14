@@ -2,25 +2,32 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-export default class SearchBar extends Component {
+import { fetchWeather } from '../actions/index';
+
+class SearchBar extends Component {
   constructor(props) {
     super(props);
 
     this.state = { term: '' };
 
     // this is the proper way to make sure the correct 'this' binding occurs
-    // this.onInputChange = this.onInputChange.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
-  onInputChange = (event) => {
+  onInputChange(event) {
     this.setState({ term: event.target.value });
   };
 
   // always need to prevent default when using form tags
-  onFormSubmit = (event) => {
+  onFormSubmit(event) {
     event.preventDefault();
 
     // go to fetch weather data
+    this.props.fetchWeather(this.state.term);
+
+    // reset the searchBar
+    this.setState({ term: '' });
   }
   
   render() {
@@ -43,3 +50,10 @@ export default class SearchBar extends Component {
     )
   }
 }
+
+// Allows the function fetchWeather to be a prop for the searchBar
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchWeather }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(SearchBar);
