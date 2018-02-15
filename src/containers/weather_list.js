@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import Chart from '../components/chart';
 import GoogleMap from '../components/google_map';
+// import GoogleMapFunction from '../components/google_map_function';
 
 class WeatherList extends Component {
   renderWeather(cityData) {
